@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>
+          Task Management
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+      <ion-input [(ngModel)]="todo" placeholder="Insert some todo here here" type="text"></ion-input>
+  </ion-item>
+
+  <button ion-button icon-start (click)="add()" block  color="dark"><ion-icon name="add"></ion-icon> ADD</button>
+
+  <ion-list>
+      <ion-item-sliding *ngFor="let t of todos">
+          <ion-item [ngStyle]="{ background: t.mark ? '#add8e6': ''}" (click)="my_check()">
+              <ion-label>
+                <b [ngStyle]="{ color: t.mark ? 'white': ''}">{{t.task}} </b>
+                <b [ngStyle]="{ color: t.mark ? 'black': ''}" *ngIf="t.mark == true" item-end>Completed!</b></ion-label>
+              
+                <ion-checkbox item-end [(ngModel)]="t.mark" (click)="saveTodos()" ></ion-checkbox>
+              
+                <button *ngIf="t.mark == true" item-end ion-button color="danger" (click)="delete(t)" >
+                    <ion-icon name="trash"></ion-icon> Delete
+                </button>
+          </ion-item>
+
+          <!-- <ion-item-options side="right" *ngIf="t.mark == true"> -->
+          <!-- </ion-item-options> -->
+      </ion-item-sliding>
+  </ion-list>
+</ion-content>
