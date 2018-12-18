@@ -52,6 +52,6 @@ export class HomePage {
   changeColor() {
     this.buttonColor = true;
     this.mycolor = '#add8e6';
-    console.log("ddddddddddddd");
+    
   }
 }

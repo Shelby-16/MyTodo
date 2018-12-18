@@ -1,27 +1,30 @@
 <ion-header>
   <ion-navbar>
       <ion-title>
-          Task Management
+   <img alt = "logo" height="25" src="../assets/check.png">
+        My Shopping List
       </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item>
-      <ion-input [(ngModel)]="todo" placeholder="Insert some todo here here" type="text"></ion-input>
+      <ion-input [(ngModel)]="todo" placeholder=" Add an Item Here " type="text" (keyup.enter)="add()"></ion-input>
   </ion-item>
 
-  <button ion-button icon-start (click)="add()" block  color="dark"><ion-icon name="add"></ion-icon> ADD</button>
+  <button ion-button icon-start (click)="add()" block  color="dark"><ion-icon name="add" ></ion-icon> ADD</button>
+
+
 
   <ion-list>
       <ion-item-sliding *ngFor="let t of todos">
           <ion-item [ngStyle]="{ background: t.mark ? '#add8e6': ''}" (click)="my_check()">
               <ion-label>
                 <b [ngStyle]="{ color: t.mark ? 'white': ''}">{{t.task}} </b>
-                <b [ngStyle]="{ color: t.mark ? 'black': ''}" *ngIf="t.mark == true" item-end>Completed!</b></ion-label>
-              
+                <b [ngStyle]="{ color: t.mark ? 'black': ''}" *ngIf="t.mark == true" item-end > Got it !  </b></ion-label>
+
                 <ion-checkbox item-end [(ngModel)]="t.mark" (click)="saveTodos()" ></ion-checkbox>
-              
+
                 <button *ngIf="t.mark == true" item-end ion-button color="danger" (click)="delete(t)" >
                     <ion-icon name="trash"></ion-icon> Delete
                 </button>
